@@ -4,6 +4,7 @@ use App\Http\Controllers\front\NewsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Http\Controllers\FacebookController;
 
 // عرض الصفحه بتاعت welcome 
 Route::get('/welcome', function () {
@@ -66,12 +67,18 @@ Route::get('/resources/views/landingpage.blade.php', function () {
     return view('landingpage');
 });
 // steps from how to verify email address to user
-Auth::routes(['verify'=>True]);
+Auth::routes(['verify' => True]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+// Route::get('/', function () {
+//     return 'home';
+// });
 Route::get('/', function () {
-    return 'home';
+    return view('landingpage');
 });
-Route::get('/dashboard',function(){
-    return'dashboard';
+Route::get('/data-deletion', function () {
+    return view('sections.data-deletion');
 });
+// دول بتوع ال controller اللي اتعمل ب 2 functions redirect , callback
+Route::get('/redirect/{service}', [FacebookController::class, 'redirect']);
+Route::get('/callback/{service}', [FacebookController::class, 'callback']);

@@ -67,6 +67,9 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            <div class="col-md-6">
+                                <a href="{{url('redirect/facebook')}}">login with facebook</a>
+                            </div>
                         </div>
                     </form>
                 </div>
